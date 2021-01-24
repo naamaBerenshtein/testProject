@@ -1,0 +1,41 @@
+<div class="FilterList">
+    <mat-list role="list">
+        <mat-list-item role="listitem">
+            <mat-label>IDs :</mat-label>
+            <input matInput placeholder="IDs" [value]="IdsFilter" [(ngModel)]='IdsFilter'>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+            <mat-label>Names :</mat-label>
+
+            <input matInput placeholder="Names" [value]="NamesFilter" [(ngModel)]='NamesFilter'>
+        </mat-list-item>
+    </mat-list>
+</div>
+<div class="table">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Avarage</th>
+            <th>Exam</th>
+        </tr>
+        <tr class="green" *ngFor='let data of passedData;let i = index'>
+
+            <td>{{data.Id}}</td>
+            <td>{{data.Name}}</td>
+            <td>{{data.Sum/data.Exam}}</td>
+            <td>{{data.Exam}}</td>
+
+
+        </tr>
+        <tr class="red" *ngFor='let data of failedData;let i = index'>
+
+            <td>{{data.Id}}</td>
+            <td>{{data.Name}}</td>
+            <td>{{data.Sum/data.Exam}}</td>
+            <td>{{data.Exam}}</td>
+
+
+        </tr>
+    </table>
+</div>

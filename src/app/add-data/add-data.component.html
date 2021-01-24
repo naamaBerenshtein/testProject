@@ -1,0 +1,48 @@
+<mat-list role="list">
+    <mat-list-item role="listitem" class="title">AddData:</mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter id" [(ngModel)]='data.Id' [value]="data.Id">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter Name" [(ngModel)]='data.Name' [value]="data.Name">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter Date" [(ngModel)]='data.Date' [value]="data.Name">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input type="number" matInput placeholder="Enter Grade" [(ngModel)]='data.Grade' [value]="data.Grade">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter Subject" [(ngModel)]='data.Subject' [value]="data.Subject">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter Email" [(ngModel)]='data.Email' [value]="data.Email">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter Country" [(ngModel)]='data.Country' [value]="data.Country">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter City" [(ngModel)]='data.City' [value]="data.City">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter City" [(ngModel)]='data.City' [value]="data.City">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <!-- <mat-label>id</mat-label> -->
+        <input matInput placeholder="Enter Zip" [(ngModel)]='data.Zip' [value]="data.Zip">
+    </mat-list-item>
+    <mat-list-item role="listitem">
+
+        <button mat-stroked-button color="warn" (click)="AddData()">Add</button>
+    </mat-list-item>
+
+</mat-list>

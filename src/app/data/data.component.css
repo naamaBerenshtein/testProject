@@ -1,0 +1,62 @@
+.table{
+    max-width: 50%;
+    position: relative;
+    margin-top: 50px;
+    
+    /* margin: auto; */
+}
+.DetilesCard{
+    max-width: 30%;
+    display: block;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 50px;
+
+}
+.dataPage{
+    /* margin: auto; */
+    position: relative;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+}
+.title{
+    font-weight: bold;
+    border-bottom: 3px solid red;
+
+
+}
+.adderss{
+    font-weight: bold;
+    border-bottom: 1px solid red;
+}
+.paginator{
+    position: absolute;
+    margin-right: 10px;
+}
+.mat-cell,
+  .mat-header-cell {
+    word-wrap: initial;
+    display: table-cell;
+    padding: 0px 10px;
+    line-break: unset;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+  .filter{
+     
+  }
+  .topLine{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10%;
+    position: absolute;
+    margin-top: 50px;
+    /* max-width: 100%; */
+  }
+  .button{
+      margin-left: 10px;
+  }

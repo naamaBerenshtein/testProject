@@ -1,0 +1,97 @@
+<div class="topLine">
+    <div class="filter">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput placeholder="Filter" (change)='filterData()' [(ngModel)]='paramFilter'
+                [value]='paramFilter'>
+        </mat-form-field>
+    </div>
+    <div class="button">
+        <button mat-stroked-button color="warn" (click)="openAddDialog()">Add</button>
+
+    </div>
+    <!-- <div class="button">
+        <button mat-stroked-button color="warn">Remove</button>
+
+    </div> -->
+</div>
+<div class="dataPage">
+
+    <div class=" table">
+        <table mat-table [dataSource]="dataSource">
+
+            <!-- Id Column -->
+            <ng-container matColumnDef="Id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="Date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.Date| date: 'dd/MM/yyyy'}} </td>
+            </ng-container>
+
+            <!-- Grade Column -->
+            <ng-container matColumnDef="Grade">
+                <th mat-header-cell *matHeaderCellDef> Grade </th>
+                <td mat-cell *matCellDef="let element"> {{element.Grade}} </td>
+            </ng-container>
+            <!-- Subject Column -->
+            <ng-container matColumnDef="Subject">
+                <th mat-header-cell *matHeaderCellDef> Subject </th>
+                <td mat-cell *matCellDef="let element"> {{element.Subject}} </td>
+            </ng-container>
+            <!-- Edit Column -->
+            <ng-container matColumnDef="Edit">
+                <th mat-header-cell *matHeaderCellDef> Detiles </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="getDetiles(element.Id)">
+                        <mat-icon>subject</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Delete">
+                <th mat-header-cell *matHeaderCellDef> Delete </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="Delete(element.Id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        <!-- <mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row" -->
+        <!-- [class.expanded]="expandedElement == row" (click)="expandedElement = row"></mat-row> -->
+        <!-- <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow" -->
+        <!-- [@/detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'" style="overflow: hidden"> -->
+        <!-- </mat-row> -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="paginator"></mat-paginator>
+    </div>
+    <div class="DetilesCard">
+        <mat-list role="list">
+            <mat-list-item role="listitem" class="title">Detiles:</mat-list-item>
+            <mat-list-item role="listitem">Id: {{chooseDate.Id}}</mat-list-item>
+            <mat-list-item role="listitem">Name: {{chooseDate.Name}}</mat-list-item>
+            <mat-list-item role="listitem">Grade: {{chooseDate.Grade}}</mat-list-item>
+            <mat-list-item role="listitem">Email: {{chooseDate.Email}}</mat-list-item>
+            <mat-list-item role="listitem">DataJoined: {{chooseDate.DataJoined}}</mat-list-item>
+            <mat-list-item role="listitem" class="adderss">Address:</mat-list-item>
+            <mat-list-item role="listitem">City: {{chooseDate.City}}</mat-list-item>
+            <mat-list-item role="listitem">Country: {{chooseDate.Country}}</mat-list-item>
+            <mat-list-item role="listitem">Zip: {{chooseDate.Zip}}</mat-list-item>
+            <mat-list-item role="listitem">Subject: {{chooseDate.Subject}}</mat-list-item>
+        </mat-list>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+.FilterList{
+    position: absolute;
+    margin-top: 100px;
+}
+.table{
+    position: absolute;
+    margin-top: 250px;
+    border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  .green{
+      color: greenyellow;
+  }
+  .red{
+      color: red;
+  }

@@ -1,0 +1,12 @@
+/* .place{
+  top: 30px;
+} */
+.toolbar {
+    padding: 14px;
+    margin: 10px;
+  
+  }
+  .height{
+    max-height: 20px;
+    min-width: 100%;
+  }
