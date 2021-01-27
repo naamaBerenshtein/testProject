@@ -15,6 +15,8 @@ import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import { DataService } from './dataBase/data.service';
 import { AddDataComponent } from './add-data/add-data.component';
 // import { ToolBarComponent } from './tool-bar/tool-bar.component';
+import { ColumnSeriesService, CategoryService, ChartModule, SplineSeriesService } from '@syncfusion/ej2-angular-charts';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -41,10 +43,11 @@ import { AddDataComponent } from './add-data/add-data.component';
 
 
     ]),
+    ChartModule,
     NoopAnimationsModule,
     MatirialModule
-  ],entryComponents:[AddDataComponent],
-  providers: [PagerService,DataService],
+  ], entryComponents: [AddDataComponent],
+  providers: [PagerService, DataService, ColumnSeriesService, CategoryService, SplineSeriesService,DatePipe],
   bootstrap: [AppComponent],
   exports: [MatirialModule, SharedModule]
 })

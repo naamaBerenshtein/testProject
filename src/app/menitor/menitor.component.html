@@ -1,41 +1,77 @@
-<div class="FilterList">
-    <mat-list role="list">
-        <mat-list-item role="listitem">
-            <mat-label>IDs :</mat-label>
-            <input matInput placeholder="IDs" [value]="IdsFilter" [(ngModel)]='IdsFilter'>
-        </mat-list-item>
-        <mat-list-item role="listitem">
-            <mat-label>Names :</mat-label>
+<div class="menitorPage">
+    <div class="FilterList">
+        <mat-list role="list">
+            <mat-form-field class="example-chip-list">
+                <mat-label>IDs</mat-label>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip *ngFor="let id of ids" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(id)">
+                        {{id.id}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New id..." [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+            <!-- <mat-list-item role="listitem">
+                <mat-label>IDs :</mat-label>
+                <input matInput placeholder="Enter IDs with ," [value]="IdsFilter" [(ngModel)]='IdsFilter'>
+            </mat-list-item> -->
+            <mat-list-item role="listitem">
+                <!-- <mat-label>Names :</mat-label> -->
+                <input matInput placeholder="Names" [value]="NameFilter" [(ngModel)]='NameFilter' (change)='FilterName()'>
 
-            <input matInput placeholder="Names" [value]="NamesFilter" [(ngModel)]='NamesFilter'>
-        </mat-list-item>
-    </mat-list>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <div class="table">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Avarage</th>
+                <th>Exam</th>
+            </tr>
+            <tr class="green" *ngFor='let data of passedData;let i = index'>
+
+                <td>{{data.Id}}</td>
+                <td>{{data.Name}}</td>
+                <td>{{data.Sum/data.Exam}}</td>
+                <td>{{data.Exam}}</td>
+
+
+            </tr>
+            <tr class="red" *ngFor='let data of failedData;let i = index'>
+
+                <td>{{data.Id}}</td>
+                <td>{{data.Name}}</td>
+                <td>{{data.Sum/data.Exam}}</td>
+                <td>{{data.Exam}}</td>
+
+
+            </tr>
+        </table>
+    </div>
 </div>
-<div class="table">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Avarage</th>
-            <th>Exam</th>
-        </tr>
-        <tr class="green" *ngFor='let data of passedData;let i = index'>
+<div>
+    <!-- <mat-form-field class="example-chip-list">
+        <mat-label>Favorite Fruits</mat-label>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(fruit)">
+                {{fruit}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New fruit..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                {{fruit}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field> -->
 
-            <td>{{data.Id}}</td>
-            <td>{{data.Name}}</td>
-            <td>{{data.Sum/data.Exam}}</td>
-            <td>{{data.Exam}}</td>
-
-
-        </tr>
-        <tr class="red" *ngFor='let data of failedData;let i = index'>
-
-            <td>{{data.Id}}</td>
-            <td>{{data.Name}}</td>
-            <td>{{data.Sum/data.Exam}}</td>
-            <td>{{data.Exam}}</td>
-
-
-        </tr>
-    </table>
 </div>

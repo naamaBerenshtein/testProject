@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../dataBase/data.service';
 import { Data } from '../Models/Data.model';
 import { DataState } from '../Models/dataState.model';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material';
+import { Ids } from '../Models/Ids.model';
+
 
 @Component({
   selector: 'pm-menitor',
@@ -16,15 +20,23 @@ export class MenitorComponent implements OnInit {
   passedData: DataState[] = [];
   failedData: DataState[] = [];
   dataState: DataState[] = [];
+  filterDataState: DataState[] = [];
+  filterIdDataState: DataState[] = [];
   IDs: number[] = [];
+  NameFilter: string;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  ids: Ids[] = [
+
+  ];
   ngOnInit() {
-    debugger;
     this.data = this.DataService.getData();
-    // this.dataState.length = Data.length;
     var ids = this.data.map(function (obj) { return obj.Id; });
     ids = ids.filter(function (v, i) { return ids.indexOf(v) == i; });
     this.IDs = ids;
-    console.log(ids);
     for (let indexData = 0; indexData < this.data.length; indexData++) {
       if (indexData < this.IDs.length) {
         this.dataState[indexData] = new DataState();
@@ -41,13 +53,14 @@ export class MenitorComponent implements OnInit {
       }
     }
     this.dataState = this.dataState.filter(x => x);
-    console.log(this.dataState);
+    this.filterDataState = this.dataState;
 
-
-    this.getAverages();
+    this.getAverages(this.dataState);
   }
-  getAverages() {
-    this.dataState.forEach(element => {
+  getAverages(dataState: DataState[]) {
+    this.passedData = [];
+    this.failedData = [];
+    dataState.forEach(element => {
       if (element.Sum / element.Exam >= 65) {
         this.passedData.push(element);
       }
@@ -56,6 +69,44 @@ export class MenitorComponent implements OnInit {
       }
 
     });
+  }
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our id
+    if ((value || '').trim()) {
+      this.ids.push({ id: value.trim() });
+      this.filterIdDataState.push(this.dataState.filter(x => x.Id.toString() == value.trim())[0]);
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    this.filterDataState = this.filterIdDataState;
+    this.getAverages(this.filterDataState);
+    this.FilterName();
+  }
+
+  remove(id: Ids): void {
+    const index = this.ids.indexOf(id);
+    if (index >= 0) {
+      this.ids.splice(index, 1);
+      if (this.ids.length == 0) {
+        this.filterDataState = this.dataState;
+      }
+      else {
+        this.filterDataState = this.filterDataState.filter(x => x.Id.toString() != id.id);
+      }
+    }
+    // this.FilterName();
+    this.getAverages(this.filterDataState);
+
+  }
+  FilterName() {
+    this.filterDataState = this.dataState.filter(x => x.Name.indexOf(this.NameFilter) != -1);
+    this.getAverages(this.filterDataState);
   }
 
 }

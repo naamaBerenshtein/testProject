@@ -1,12 +1,17 @@
 .FilterList{
     position: absolute;
     margin-top: 100px;
+    margin-left: 500px;
+    display: flex;
+    flex-direction: row;
+
 }
 .table{
     position: absolute;
     margin-top: 250px;
     border-collapse: collapse;
   width: 100%;
+  margin-left: 500px;
 }
 th, td {
     text-align: left;
@@ -17,4 +22,9 @@ th, td {
   }
   .red{
       color: red;
+  }
+  .menitorPage{
+      /* max-width: 100%; */
+      /* margin: auto; */
+      /* margin-left: 40%; */
   }

@@ -22,11 +22,8 @@ export class DataComponent implements OnInit, AfterViewInit {
   paramFilter: string;
   dataSource;
   ngOnInit() {
-    debugger;
-    // this.data = this.DataService.getData();
     this.getData();
     this._route.params.subscribe(params => {
-      debugger;
       if (params.Filter) {
         this.paramFilter = params.Filter;
         this.filter();
@@ -50,17 +47,12 @@ export class DataComponent implements OnInit, AfterViewInit {
 
   }
   filterData() {
-    // this.data = this.DataService.getData();
     this.getData();
-    console.log(this.paramFilter);
     this._router.navigate(['../', { Filter: this.paramFilter }]);
     this.filter();
-    // this.data = this.data.filter(x => x.Id.toString() == this.paramFilter);
     this.getDataSorce();
-    console.log(this.data);
   }
   getDetiles(id: number) {
-    console.log(id);
     this.chooseDate = this.data.filter(x => x.Id == id)[0];
   }
   getDataSorce() {
@@ -78,17 +70,15 @@ export class DataComponent implements OnInit, AfterViewInit {
 
     const dialogRef = this.dialog.open(AddDataComponent, {
       width: '80%',
-      // data: {name: this.name, animal: this.animal}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
+    
       this.getData();
       this.getDataSorce();
     });
   }
-  Delete(id: number, subject: string) {
-    this.DataService.deleteData(id, subject);
+  Delete(index:number) {
+    this.DataService.deleteData(index);
     this.getData();
     this.getDataSorce();
 

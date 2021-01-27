@@ -1,1 +1,32 @@
-<p>analysis works!</p>
+<div class="Filter">
+    <mat-form-field class="example-chip-list">
+        <mat-label>IDs</mat-label>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let id of ids" [selectable]="selectable" [removable]="removable" (removed)="remove(id)">
+                {{id.id}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New id..." [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+    </mat-form-field>
+</div>
+<div class="SubjectChart">
+    <!-- <label>Subject Chart</label> -->
+    <ejs-chart style='display:block' id='chartcontainer' [primaryXAxis]='primaryXAxis'>
+        <e-series-collection>
+            <e-series [dataSource]='dataChart' type='Column' xName='x' yName='y'> </e-series>
+        </e-series-collection>
+    </ejs-chart>
+</div>
+<div class="SplineCart">
+    <ejs-chart style='display:block' id='SplineCart' [primaryXAxis]='primaryXAxisSpline'>
+        <e-series-collection>
+            <e-series *ngFor='let data of dataSpline;let i=index' [dataSource]='data.data' type='Spline' xName='x'
+                yName='y'> </e-series>
+
+            <!-- <e-series [dataSource]='dataSpline' type='Spline' xName='x' yName='y'> </e-series> -->
+        </e-series-collection>
+    </ejs-chart>
+</div>

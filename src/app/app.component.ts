@@ -30,7 +30,6 @@ export class AppComponent {
     // this._router.navigate(['/Management']) 
   }
   SpecialOperations(value: string) {
-    debugger;
     if (value == "תעודות משלוח לקומקס") {
       this._router.navigate(['/Comax'])
     }
