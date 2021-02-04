@@ -34,20 +34,18 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     BrowserModule,
     RouterModule.forRoot([
+      // { path: '**', component: DataComponent },
       { path: 'analysis', component: AnalysisComponent },
       { path: 'menitor', component: MenitorComponent },
       { path: 'data', component: DataComponent },
       { path: 'filterData/:Filter', component: DataComponent },
-
-
-
 
     ]),
     ChartModule,
     NoopAnimationsModule,
     MatirialModule
   ], entryComponents: [AddDataComponent],
-  providers: [PagerService, DataService, ColumnSeriesService, CategoryService, SplineSeriesService,DatePipe],
+  providers: [PagerService, DataService, ColumnSeriesService, CategoryService, SplineSeriesService, DatePipe],
   bootstrap: [AppComponent],
   exports: [MatirialModule, SharedModule]
 })

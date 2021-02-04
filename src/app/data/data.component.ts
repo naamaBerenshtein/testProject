@@ -29,7 +29,6 @@ export class DataComponent implements OnInit, AfterViewInit {
         this.filter();
       }
       else {
-        // this.data = this.DataService.getData();
         this.getData();
 
       }
@@ -72,12 +71,12 @@ export class DataComponent implements OnInit, AfterViewInit {
       width: '80%',
     });
     dialogRef.afterClosed().subscribe(result => {
-    
+
       this.getData();
       this.getDataSorce();
     });
   }
-  Delete(index:number) {
+  Delete(index: number) {
     this.DataService.deleteData(index);
     this.getData();
     this.getDataSorce();

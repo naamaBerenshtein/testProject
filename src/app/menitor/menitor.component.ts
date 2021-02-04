@@ -1,4 +1,3 @@
-import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../dataBase/data.service';
 import { Data } from '../Models/Data.model';
@@ -23,15 +22,14 @@ export class MenitorComponent implements OnInit {
   filterDataState: DataState[] = [];
   filterIdDataState: DataState[] = [];
   IDs: number[] = [];
+  ids: Ids[] = [];
   NameFilter: string;
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  ids: Ids[] = [
 
-  ];
   ngOnInit() {
     this.data = this.DataService.getData();
     var ids = this.data.map(function (obj) { return obj.Id; });
@@ -53,7 +51,9 @@ export class MenitorComponent implements OnInit {
       }
     }
     this.dataState = this.dataState.filter(x => x);
+
     this.filterDataState = this.dataState;
+    this.filterIdDataState = this.dataState;
 
     this.getAverages(this.dataState);
   }
@@ -74,39 +74,51 @@ export class MenitorComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add our id
-    if ((value || '').trim()) {
-      this.ids.push({ id: value.trim() });
-      this.filterIdDataState.push(this.dataState.filter(x => x.Id.toString() == value.trim())[0]);
-    }
+    if (value != "") {
+      if (this.ids.length < 1) {
+        this.filterIdDataState = [];
+      }
 
-    // Reset the input value
-    if (input) {
-      input.value = '';
+      // Add our id
+      if ((value || '').trim()) {
+        this.ids.push({ id: value.trim() });
+
+        this.filterIdDataState.push(this.dataState.filter(x => x.Id.toString() == value.trim())[0]);
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+      this.filterDataState = this.filterIdDataState;
+      this.getAverages(this.filterDataState);
+      if (this.NameFilter.length) {
+        this.FilterName();
+      }
     }
-    this.filterDataState = this.filterIdDataState;
-    this.getAverages(this.filterDataState);
-    this.FilterName();
   }
 
   remove(id: Ids): void {
+
     const index = this.ids.indexOf(id);
     if (index >= 0) {
       this.ids.splice(index, 1);
+      this.filterIdDataState = this.filterIdDataState.filter(x => x.Id.toString() != id.id);
+      this.filterDataState = this.filterIdDataState;
+
       if (this.ids.length == 0) {
-        this.filterDataState = this.dataState;
-      }
-      else {
-        this.filterDataState = this.filterDataState.filter(x => x.Id.toString() != id.id);
+
+        this.filterIdDataState = this.filterDataState = this.dataState;
       }
     }
-    // this.FilterName();
     this.getAverages(this.filterDataState);
 
   }
   FilterName() {
-    this.filterDataState = this.dataState.filter(x => x.Name.indexOf(this.NameFilter) != -1);
+    this.filterDataState = this.filterIdDataState.filter(x => x.Name.indexOf(this.NameFilter) != -1);
     this.getAverages(this.filterDataState);
+
+
   }
 
 }

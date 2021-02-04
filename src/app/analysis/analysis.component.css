@@ -1,6 +1,10 @@
 .Filter{
     position: absolute;
     margin-top: 100px;
+    right: 550px;
+    display: flex;
+    flex-direction: row;
+    padding:5px;
 }
 .SubjectChart{
     
@@ -17,4 +21,14 @@
     left:  20px;
     margin-top: 200px;
 
+}
+.StudentChart{
+    position: absolute;
+    max-width: 50%;
+    right: 350px;
+    margin-top: 750px;
+
+}
+.subjectChip{
+    /* padding: 5px; */
 }

@@ -1,19 +1,31 @@
 <div class="Filter">
-    <mat-form-field class="example-chip-list">
+    <mat-form-field class="example-chip-list" id='chipId'>
         <mat-label>IDs</mat-label>
-        <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip-list #chipList>
             <mat-chip *ngFor="let id of ids" [selectable]="selectable" [removable]="removable" (removed)="remove(id)">
                 {{id.id}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input placeholder="New id..." [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="add($event)">
+                (matChipInputTokenEnd)="add($event)" >
+        </mat-chip-list>
+    </mat-form-field>
+    <mat-form-field class="subjectChip" id='chipSubjects'>
+        <mat-label>Subjects</mat-label>
+        <mat-chip-list #chipSubList>
+            <mat-chip *ngFor="let subject of filterSubject" [selectable]="selectable" [removable]="removable"
+                (removed)="removeSubject(subject)">
+                {{subject.id}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New Subject..." [matChipInputFor]="chipSubList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addSubject($event)">
         </mat-chip-list>
     </mat-form-field>
 </div>
 <div class="SubjectChart">
-    <!-- <label>Subject Chart</label> -->
     <ejs-chart style='display:block' id='chartcontainer' [primaryXAxis]='primaryXAxis'>
         <e-series-collection>
             <e-series [dataSource]='dataChart' type='Column' xName='x' yName='y'> </e-series>
@@ -25,8 +37,13 @@
         <e-series-collection>
             <e-series *ngFor='let data of dataSpline;let i=index' [dataSource]='data.data' type='Spline' xName='x'
                 yName='y'> </e-series>
-
-            <!-- <e-series [dataSource]='dataSpline' type='Spline' xName='x' yName='y'> </e-series> -->
+        </e-series-collection>
+    </ejs-chart>
+</div>
+<div class="StudentChart">
+    <ejs-chart style='display:block' id='chartStudentAvarages' [primaryXAxis]='primaryXAxis'>
+        <e-series-collection>
+            <e-series [dataSource]='dataStudent' type='Column' xName='Name' yName='Average'> </e-series>
         </e-series-collection>
     </ejs-chart>
 </div>

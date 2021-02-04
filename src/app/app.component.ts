@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-// import { StudentService } from './Student/Student.service';
+
 
 @Component({
   selector: 'pm-root',
@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class AppComponent {
   Management(value: string) {
-    debugger;
     if (value == "clients") {
       this._router.navigate(['/Clients'])
     }
@@ -27,7 +26,6 @@ export class AppComponent {
     else if (value == "agents") {
       this._router.navigate(['/Agents'])
     }
-    // this._router.navigate(['/Management']) 
   }
   SpecialOperations(value: string) {
     if (value == "תעודות משלוח לקומקס") {
