@@ -156,9 +156,10 @@ export class AnalysisComponent implements OnInit {
     const value = event.value;
     // Add our id
     if ((value || '').trim()) {
-      if (this.filterSubject.length < 1 && this.ids.length < 1) {
-        this.filterData = [];
-      }
+      // if (this.filterSubject.length < 1 && this.ids.length < 1) {
+      //   this.filterData = [];
+      // }
+      debugger;
       this.filterSubject.push({ id: value.trim() });
       this.filterData = this.filterData.filter(x => x.Subject == value.trim())
       this.getSubjectsAverages();
